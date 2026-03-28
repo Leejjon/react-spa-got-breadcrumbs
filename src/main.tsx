@@ -7,6 +7,7 @@ import { Books } from './pages/books';
 import { Characters } from './pages/characters';
 import App from './App';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { CharacterDetails } from './pages/character-details';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/characters",
         element: <Characters />,
+      },
+      {
+        path: "/characters/:id",
+        element: <CharacterDetails />,
       }
     ],
   },
