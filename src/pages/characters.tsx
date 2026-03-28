@@ -16,11 +16,11 @@ type Character = {
 
 
 export function Characters() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const params: SearchParams = {
     page: Number(searchParams.get("page")) || 1,
-    pageSize: Number(searchParams.get("pageSize")) || 10,
+    pageSize: Number(searchParams.get("pageSize")) || 5,
   };
 
   const enablePreviousButton = (params.page ? params.page > 1 : false);
