@@ -2,6 +2,10 @@ import { Link, Outlet } from "react-router";
 import { Breadcrumbs } from "./components/breadcrumbs";
 import { useState } from "react";
 
+export type OverrideBreadcrumbContext = {
+    setBreadcrumbLabelOverrides: (overrides: string[]) => void;
+};
+
 function App() {
 
     const [breadcrumbLabelOverrides, setBreadcrumbLabelOverrides] = useState<string[]>([]);
@@ -18,7 +22,7 @@ function App() {
             </div>
             <div id="content" className="col-span-10 p-2">
                 <Breadcrumbs breadcrumbLabelOverrides={breadcrumbLabelOverrides} />
-                <Outlet />
+                <Outlet context={{ setBreadcrumbLabelOverrides } satisfies OverrideBreadcrumbContext} />
             </div>
         </div >
     );
