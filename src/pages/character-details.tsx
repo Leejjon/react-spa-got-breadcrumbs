@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { Link, useParams } from "react-router";
+
+import { Link, useOutletContext, useParams } from "react-router";
+import type { OverrideBreadcrumbContext } from "../App";
 
 type CharacterDetails = {
     url: string;
@@ -23,6 +25,8 @@ type CharacterDetails = {
 export function CharacterDetails() {
     const params = useParams<{ id: string }>();
 
+    const { setBreadcrumbLabelOverrides } = useOutletContext<OverrideBreadcrumbContext>();
+    
     const { data: character, isLoading } = useQuery({
         queryKey: ["characterdetails", params.id],
         queryFn: async () => {
@@ -31,11 +35,15 @@ export function CharacterDetails() {
                 throw new Error("Network response was not ok");
             } else {
                 const data: CharacterDetails = await response.json();
+
+                if (data.name) {
+                    setBreadcrumbLabelOverrides(["Characters", data.name]);
+                }
                 return data;
             }
         }
     });
-
+    
     if (character) {
         return (
             <>
