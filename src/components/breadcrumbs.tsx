@@ -1,9 +1,12 @@
 import { Fragment } from "react";
 import { Link, useLocation } from "react-router";
 
-export function Breadcrumbs() {
+export type BreadcrumbsProps = {
+    breadcrumbLabelOverrides: string[];
+};
+
+export function Breadcrumbs({breadcrumbLabelOverrides}: BreadcrumbsProps) {
     const pathname = useLocation().pathname;
-    console.log(pathname);
     const pathSegments = pathname.split('/').filter(segment => segment !== '');
     return (
         <div className="mb-2">

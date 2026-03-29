@@ -1,7 +1,10 @@
 import { Link, Outlet } from "react-router";
 import { Breadcrumbs } from "./components/breadcrumbs";
+import { useState } from "react";
 
 function App() {
+
+    const [breadcrumbLabelOverrides, setBreadcrumbLabelOverrides] = useState<string[]>([]);
 
     return (
         <div className="grid grid-cols-12 min-h-screen grid-rows-[auto_1fr]">
@@ -14,7 +17,7 @@ function App() {
                 <Link to="/characters">Characters</Link>
             </div>
             <div id="content" className="col-span-10 p-2">
-                <Breadcrumbs />
+                <Breadcrumbs breadcrumbLabelOverrides={breadcrumbLabelOverrides} />
                 <Outlet />
             </div>
         </div >
