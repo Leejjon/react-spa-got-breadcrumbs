@@ -1,4 +1,5 @@
 import { Link, Outlet } from "react-router";
+import { Breadcrumbs } from "./components/breadcrumbs";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
                 <Link to="/characters">Characters</Link>
             </div>
             <div id="content" className="col-span-10 p-2">
+                <Breadcrumbs />
                 <Outlet />
             </div>
         </div >
